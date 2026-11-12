@@ -83,8 +83,8 @@ export class HomePage {
         this.expression = display;
         let operationIndex = display.indexOf(operation);
         display = display.slice(operationIndex + 2);
-        
         this.secondOperand = parseFloat(display);
+
         if (this.operation === "/" && this.secondOperand === 0) {
           this.display = "Cannot divide by zero";
           this.problemComplete = true;
@@ -94,40 +94,30 @@ export class HomePage {
         switch (operation) {
           case "+": {
             this.result = this.firstOperand + this.secondOperand;
-            this.display = this.result.toString();
-            this.expression += " = " + this.result;
-            this.history += "\n" + this.expression;
             break;
           }
           case "-": {
             this.result = this.firstOperand - this.secondOperand;
-            this.display = this.result.toString();
-            this.expression += " = " + this.result;
-            this.history += "\n" + this.expression;
             break;
           }
           case "*": {
             this.result = this.firstOperand * this.secondOperand;
-            this.display = this.result.toString();
-            this.expression += " = " + this.result;
-            this.history += "\n" + this.expression;
             break;
           }
           case "/": {
             this.result = this.firstOperand / this.secondOperand;
-            
-            this.display = this.result.toString();
-            this.expression += " = " + this.result;
-            this.history += "\n" + this.expression;
             break;
           }
           default: {
-            this.display = "";
-            break;
+            return;
           }
-      }
+        }
+
+        this.display = Number(this.result.toPrecision(12)).toString();
+        this.expression += " = " + this.display;
+        this.history += "\n" + this.expression;
       
-    }
+      }
   
     this.problemComplete = true;
   }
