@@ -26,49 +26,49 @@
             <ion-button shape="round" fill="outline" color="warning" size="large" (click)="ClearButton(display)">C</ion-button>
           </ion-col>
           <ion-col offset="3" size="3">
-            <ion-button shape="round" color="warning" size="large" (click)="Divide(display)">÷</ion-button>
+            <ion-button shape="round" color="warning" size="large" (click)="OperatorClicked('/')">÷</ion-button>
           </ion-col>
           <ion-col size="3">
-            <ion-button shape="round" color="warning" size="large" (click)="Multiply(display)">×</ion-button>
+            <ion-button shape="round" color="warning" size="large" (click)="OperatorClicked('*')">×</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="SevenButton(display)">7</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(7)">7</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="EightButton(display)">8</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(8)">8</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="NineButton(display)">9</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(9)">9</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" color="warning" size="large" (click)="Subtract(display)">–</ion-button>
+            <ion-button shape="round" color="warning" size="large" (click)="OperatorClicked('-')">–</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="FourButton(display)">4</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(4)">4</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="FiveButton(display)">5</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(5)">5</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" fill="outline" color="light" size="large" (click)="SixButton(display)">6</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(6)">6</ion-button>
           </ion-col>
           <ion-col>
-            <ion-button shape="round" color="warning" size="large" (click)="Add(display)">+</ion-button>
+            <ion-button shape="round" color="warning" size="large" (click)="OperatorClicked('+')">+</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-sm>
-            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="OneButton(display)">1</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="ButtonClicked(1)">1</ion-button>
           </ion-col>
           <ion-col col-sm>
-            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="TwoButton(display)">2</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="ButtonClicked(2)">2</ion-button>
           </ion-col>
           <ion-col col-sm>
-            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="ThreeButton(display)">3</ion-button>
+            <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="ButtonClicked(3)">3</ion-button>
           </ion-col>
           <ion-col>
             <ion-button class="tall" shape="round" color="warning" size="large" (click)="Equals(display, operation)">=</ion-button>
@@ -76,7 +76,7 @@
         </ion-row>
         <ion-row>
           <ion-col offset="-1.1">
-            <ion-button class="wide" shape="round" fill="outline" color="light" size="large" (click)="ZeroButton(display)">0</ion-button>
+            <ion-button class="wide" shape="round" fill="outline" color="light" size="large" (click)="ButtonClicked(0)">0</ion-button>
           </ion-col>
           <ion-col offset="-4.3">
             <ion-button shape="round" fill="outline" color="light" size="large" width="3" (click)="DecimalPoint(display)">·</ion-button>
