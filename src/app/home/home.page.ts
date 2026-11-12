@@ -1,9 +1,4 @@
 import { Component } from '@angular/core';
-import { IonItem } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
-import { GlobaldataService } from '../globaldata.service';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'page-home',
@@ -11,23 +6,15 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  router: Router;
   display="";
   firstOperand = 0;
   secondOperand = 0;
   operation="";
-  secondNumberString=""
-  decimalPlaces=0;
-  decimalPlaces2=0;
-  decimalPlacesResult=0;
   result=0;
-  resultString="";
   expression="";
   history="";
   problemComplete=false;
   error=false;
-
-  constructor(){}
 
   ButtonClicked(button: number) {
     if (this.problemComplete === true) {
@@ -53,6 +40,7 @@ export class HomePage {
     }
 
     this.firstOperand = parseFloat(this.display);
+
     this.operation = operator;
     this.display += " " + operator + " ";
   }
@@ -76,61 +64,59 @@ export class HomePage {
     }
   }
 
-  ClearButton(display) {
+  ClearButton() {
     this.display = "";
     this.problemComplete=false;
     this.error=false;
     this.operation = "";
   }
 
-  Equals(display, operation) {
+  Equals() {
     if (this.display.endsWith(" " + this.operation + " ")) {
       return;
     }
+
+    let display = this.display;
+    let operation = this.operation;
+
       if (operation !== "") {
         this.expression = display;
         let operationIndex = display.indexOf(operation);
         display = display.slice(operationIndex + 2);
-        this.secondNumberString = display;
+        
         this.secondOperand = parseFloat(display);
-        if (this.secondNumberString.includes('.')) {
-          this.decimalPlaces2 = this.secondNumberString.length - this.secondNumberString.indexOf('.') - 1;
-          if (this.decimalPlaces2 > this.decimalPlaces) {
-            this.decimalPlaces = this.decimalPlaces2;
-          }
+        if (this.operation === "/" && this.secondOperand === 0) {
+          this.display = "Cannot divide by zero";
+          this.problemComplete = true;
+          return;
         }
+        
         switch (operation) {
           case "+": {
             this.result = this.firstOperand + this.secondOperand;
-            this.display = this.result.toFixed(this.decimalPlaces).toString();
+            this.display = this.result.toString();
             this.expression += " = " + this.result;
             this.history += "\n" + this.expression;
             break;
           }
           case "-": {
             this.result = this.firstOperand - this.secondOperand;
-            this.display = this.result.toFixed(this.decimalPlaces).toString();
+            this.display = this.result.toString();
             this.expression += " = " + this.result;
             this.history += "\n" + this.expression;
             break;
           }
           case "*": {
             this.result = this.firstOperand * this.secondOperand;
-            this.display = this.result.toFixed(this.decimalPlaces).toString();
+            this.display = this.result.toString();
             this.expression += " = " + this.result;
             this.history += "\n" + this.expression;
             break;
           }
           case "/": {
             this.result = this.firstOperand / this.secondOperand;
-            this.resultString = this.result.toString();
-            if (this.resultString.includes('.')) {
-              this.decimalPlacesResult = this.resultString.length - this.resultString.indexOf('.') - 1;
-              if (this.decimalPlacesResult > this.decimalPlaces) {
-                this.decimalPlaces = this.decimalPlacesResult;
-              }
-            }
-            this.display = this.result.toFixed(this.decimalPlaces).toString();
+            
+            this.display = this.result.toString();
             this.expression += " = " + this.result;
             this.history += "\n" + this.expression;
             break;
@@ -142,7 +128,7 @@ export class HomePage {
       }
       
     }
-    this.decimalPlaces = 0;
+  
     this.problemComplete = true;
   }
 }
