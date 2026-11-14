@@ -1,23 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { GlobaldataService } from 'src/app/globaldata.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.page.html',
   styleUrls: ['./history.page.scss'],
 })
-export class HistoryPage implements OnInit {
-  history;
-  display;
+export class HistoryPage {
+  display: string[] = [];
+  alertButtons = [
+  {
+    text: 'Cancel',
+    role: 'cancel'
+  },
+  {
+    text: 'Clear',
+    role: 'destructive',
+    handler: () => {
+      this.clearHistory();
+    }
+  }
+  ];
 
-  constructor() { 
+  constructor(
+    public globalData: GlobaldataService,
+    private alertController: AlertController
+  ) {}
 
+  ionViewWillEnter() {
+    this.display = this.globalData.history;
   }
 
-  ngOnInit() {
-    this.display = this.history;
-    //alert(this.history);
+  clearHistory() {
+    this.globalData.clearHistory();
   }
 
+  async confirmClearHistory() {
+    const alert = await this.alertController.create({
+      header: 'Clear History?',
+      message: 'Are you sure you want to delete all calculations?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'Clear',
+          role: 'destructive',
+          handler: () => {
+            this.clearHistory();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

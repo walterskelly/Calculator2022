@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobaldataService } from '../globaldata.service';
 
 @Component({
   selector: 'page-home',
@@ -12,9 +13,10 @@ export class HomePage {
   operation="";
   result=0;
   expression="";
-  history="";
   problemComplete=false;
   error=false;
+
+  constructor(public globalData: GlobaldataService) {}
 
   ButtonClicked(button: number) {
     if (this.problemComplete === true) {
@@ -115,7 +117,7 @@ export class HomePage {
 
         this.display = Number(this.result.toPrecision(12)).toString();
         this.expression += " = " + this.display;
-        this.history += "\n" + this.expression;
+        this.globalData.history.push(this.expression);
       
       }
   

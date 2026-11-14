@@ -9,13 +9,19 @@
 
 <ion-content class="bkgrd">
   <div>
-    <ion-item>
-      <ion-input class="input" [(ngModel)]="display" type="text" placeholder="" align="right"></ion-input>
-    </ion-item>
+    <div *ngFor="let calculation of display">
+      {{ calculation }}
+    </div>
   </div>
+  
+  <ion-button
+    (click)="confirmClearHistory()"
+    [disabled]="display.length === 0">
+    Clear History
+  </ion-button>
   <div align="center">
     <br>
     <br>
-    <a href="/home" class="link">Return Home</a>
+    <a routerLink="/home" class="link">Return Home</a>
   </div>
 </ion-content>
