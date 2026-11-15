@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { GlobaldataService } from 'src/app/globaldata.service';
+import { Calculation, GlobaldataService } from 'src/app/globaldata.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-history',
@@ -8,7 +9,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./history.page.scss'],
 })
 export class HistoryPage {
-  display: string[] = [];
+  display: Calculation[] = [];
   alertButtons = [
   {
     text: 'Cancel',
@@ -25,8 +26,14 @@ export class HistoryPage {
 
   constructor(
     public globalData: GlobaldataService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
   ) {}
+
+  selectCalculation(result: number) {
+    this.globalData.selectedResult = result;
+    this.router.navigate(['/home']);
+  }
 
   ionViewWillEnter() {
     this.display = this.globalData.history;

@@ -18,6 +18,16 @@ export class HomePage {
 
   constructor(public globalData: GlobaldataService) {}
 
+  ionViewWillEnter() {
+  if (this.globalData.selectedResult !== null) {
+    this.display = this.globalData.selectedResult.toString();
+    this.problemComplete = true;
+    this.operation = "";
+    this.error = false;
+    this.globalData.selectedResult = null;
+    }
+  }
+
   ButtonClicked(button: number) {
     if (this.problemComplete === true) {
       this.display = "";
@@ -44,6 +54,7 @@ export class HomePage {
     this.firstOperand = parseFloat(this.display);
 
     this.operation = operator;
+    this.problemComplete = false;
     this.display += " " + operator + " ";
   }
 
@@ -74,6 +85,7 @@ export class HomePage {
   }
 
   Equals() {
+
     if (this.display.endsWith(" " + this.operation + " ")) {
       return;
     }
@@ -116,8 +128,11 @@ export class HomePage {
         }
 
         this.display = Number(this.result.toPrecision(12)).toString();
-        this.expression += " = " + this.display;
-        this.globalData.history.push(this.expression);
+        
+        this.globalData.history.push({
+          expression: this.expression, 
+          result: Number(this.display)
+        });
       
       }
   
