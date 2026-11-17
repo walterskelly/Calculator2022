@@ -10,7 +10,7 @@
 <ion-content class="bkgrd">
   <div>
     <div *ngFor="let calculation of display" 
-        (click)="selectCalculation(calculation.result)">
+        (click)="selectCalculation(calculation)">
       {{ calculation.expression + " = " + calculation.result }}
     </div>
   </div>

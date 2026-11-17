@@ -16,9 +16,12 @@
 
   <ion-content [fullscreen]="true" class="bkgrd">
     <div id="container">
-          <ion-item>
-            <ion-input class="input" [(ngModel)]="display" type="text" color="light" placeholder="0" align="right"></ion-input>
-          </ion-item>
+      <div class="expression">
+        {{ problemComplete && !error && expression ? expression + " =" : "" }}
+      </div>
+      <ion-item>
+        <ion-input class="input" [(ngModel)]="display" type="text" color="light" placeholder="0" align="right"></ion-input>
+      </ion-item>
 
       <ion-grid class="grid">
         <ion-row>

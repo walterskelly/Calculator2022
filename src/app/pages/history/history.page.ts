@@ -30,8 +30,8 @@ export class HistoryPage {
     private router: Router
   ) {}
 
-  selectCalculation(result: number) {
-    this.globalData.selectedResult = result;
+  selectCalculation(calculation: Calculation) {
+    this.globalData.selectedResult = calculation;
     this.router.navigate(['/home']);
   }
 

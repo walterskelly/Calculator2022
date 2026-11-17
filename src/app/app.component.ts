@@ -33,7 +33,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      
+      document.body.setAttribute('color-theme', 'purple');
     });
   }
 }

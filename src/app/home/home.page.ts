@@ -16,11 +16,14 @@ export class HomePage {
   problemComplete=false;
   error=false;
 
+  // Injects the shared GlobaldataService instance so HomePage
+  // can access and modify calculation history.
   constructor(public globalData: GlobaldataService) {}
 
   ionViewWillEnter() {
   if (this.globalData.selectedResult !== null) {
-    this.display = this.globalData.selectedResult.toString();
+    this.display = this.globalData.selectedResult.result.toString();
+    this.expression = this.globalData.selectedResult.expression;
     this.problemComplete = true;
     this.operation = "";
     this.error = false;
@@ -86,6 +89,10 @@ export class HomePage {
 
   Equals() {
 
+    if (this.problemComplete) {
+      return;
+    }
+
     if (this.display.endsWith(" " + this.operation + " ")) {
       return;
     }
@@ -137,5 +144,6 @@ export class HomePage {
       }
   
     this.problemComplete = true;
+    this.operation = "";
   }
 }
